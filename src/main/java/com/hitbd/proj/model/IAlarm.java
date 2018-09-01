@@ -4,65 +4,65 @@ import java.util.Date;
 
 public interface IAlarm {
 
-    String getId();
+  String getId();
 
-    void setId(String id);
+  void setId(String id);
 
-    long getImei();
+  long getImei();
 
-    void setImei(long imei);
+  void setImei(long imei);
 
-    String getStatus();
+  String getStatus();
 
-    void setStatus(String status);
+  void setStatus(String status);
 
-    String getType();
+  String getType();
 
-    void setType(String type);
+  void setType(String type);
 
-    float getLongitude();
+  float getLongitude();
 
-    void setLongitude(float longitude);
+  void setLongitude(float longitude);
 
-    float getLatitude();
+  float getLatitude();
 
-    void setLatitude(float latitude);
+  void setLatitude(float latitude);
 
-    float getVelocity();
+  float getVelocity();
 
-    void setVelocity(float velocity);
+  void setVelocity(float velocity);
 
-    String getAddress();
+  String getAddress();
 
-    void setAddress(String address);
+  void setAddress(String address);
 
-    Date getCreateTime();
+  Date getCreateTime();
 
-    void setCreateTime(Date date);
+  void setCreateTime(Date date);
 
-    Date getPushTime();
+  Date getPushTime();
 
-    void setPushTime(Date date);
+  void setPushTime(Date date);
 
-    boolean isViewed();
+  boolean isViewed();
 
-    void setViewed(boolean viewed);
+  void setViewed(boolean viewed);
 
-    String getEncId();
+  String getEncId();
 
-    void setEncId(String encId);
+  void setEncId(String encId);
 
-    /**
-     * A
-     * 获取该记录的行键
-     * @return
-     */
-    String getRowKey();
+  /**
+   * A 获取该记录的行键
+   * 
+   * @return
+   */
+  String getRowKey();
 
-    /**
-     * A
-     * 获取该记录所存在的表名
-     * @return
-     */
-    String getTableName();
+  /**
+   * A 获取该记录所存在的表名
+   * 
+   * @return
+   */
+  String getTableName();
 }

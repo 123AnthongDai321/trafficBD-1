@@ -1,9 +1,11 @@
 package com.hitbd.proj.logic.hbase;
 
 import com.hitbd.proj.util.Utils;
+
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.TableName;
@@ -21,17 +23,31 @@ import java.util.*;
 
 public class HbaseUpload {
     public static void main(String args[]) {
+        // modified 1
+        /*
         if (args.length < 1) {
             System.out.println("usage: trafficBD filename");
             return;
         }
+        */
+        String fileName = "/home/yang/IdeaProjects/trafficBD/src/data/alarm_8.txt";
+
         Configuration config = HBaseConfiguration.create();
-        config.set("hbase.master", "192.168.31.140");
-        config.set("hbase.cluster.distributed", "false");
+        // modified 2
+        // config.set("hbase.master", "192.168.31.140");
+        // config.set("hbase.cluster.distributed", "false");
+
+        config.set("hbase.zookeeper.quorum", "localhost");
+        config.set("hbase.zookeeper.property.clientPort", "2181");
+
         HashMap<String, List<Put>> putMap = new HashMap<>();
         try (Connection connection = ConnectionFactory.createConnection(config)){
             System.out.println("Connect Success");
-            CSVParser parser = new CSVParser(new FileReader(args[0]), CSVFormat.DEFAULT);
+
+            // modified 3
+            // CSVParser parser = new CSVParser(new FileReader(args[0]), CSVFormat.DEFAULT);
+
+            CSVParser parser = new CSVParser(new FileReader(fileName), CSVFormat.DEFAULT);
             Iterator<CSVRecord> records = parser.iterator();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             records.next();
@@ -51,6 +67,7 @@ public class HbaseUpload {
 
                 // 获取RowKey
                 String imei = record.get(5);
+
                 StringBuilder sb = new StringBuilder();
                 for (int j = 0; j < 17 - imei.length(); j++) {
                     sb.append(0);
